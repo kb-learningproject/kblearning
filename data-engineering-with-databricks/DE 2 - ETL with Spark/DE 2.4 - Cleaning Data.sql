@@ -98,10 +98,12 @@ SELECT count(*) FROM users_dirty WHERE email IS NULL;
 -- MAGIC
 -- MAGIC usersDF.selectExpr("count_if(email IS NULL)")
 -- MAGIC usersDF.where(col("email").isNull()).count()
+-- MAGIC
+-- MAGIC
 
 -- COMMAND ----------
 
--- DBTITLE 0,--i18n-ea1ca35c-6421-472b-b70b-4f36bdab6d79
+-- DBTITLE 1,--i18n-ea1ca35c-6421-472b-b70b-4f36bdab6d79
 -- MAGIC %md
 -- MAGIC  
 -- MAGIC ## Deduplicate Rows
@@ -152,6 +154,7 @@ SELECT count(*) FROM deduped_users
 -- MAGIC     )
 -- MAGIC
 -- MAGIC dedupedDF.count()
+-- MAGIC #dedupedDF.display()
 
 -- COMMAND ----------
 
@@ -173,6 +176,7 @@ WHERE user_id IS NOT NULL
 -- MAGIC     .dropDuplicates(["user_id", "user_first_touch_timestamp"])
 -- MAGIC     .filter(col("user_id").isNotNull())
 -- MAGIC     .count())
+-- MAGIC
 
 -- COMMAND ----------
 
@@ -249,10 +253,11 @@ SELECT max(user_id_count) <= 1 at_most_one_id FROM (
 SELECT *, 
   date_format(first_touch, "MMM d, yyyy") AS first_touch_date,
   date_format(first_touch, "HH:mm:ss") AS first_touch_time,
-  regexp_extract(email, "(?<=@).+", 0) AS email_domain
+  regexp_extract(email, "(?<=@).+", 0) AS email_domain -- extract everything After @ ie domain from email
 FROM (
   SELECT *,
-    CAST(user_first_touch_timestamp / 1e6 AS timestamp) AS first_touch 
+    CAST(user_first_touch_timestamp / 1e6 --divide by million
+     AS timestamp) AS first_touch 
   FROM deduped_users
 )
 
