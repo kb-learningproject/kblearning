@@ -191,6 +191,7 @@ SELECT user_id,
 FROM exploded_events
 GROUP BY user_id
 
+
 -- COMMAND ----------
 
 -- MAGIC %python
@@ -231,9 +232,13 @@ ON a.item.item_id = b.item_id;
 
 SELECT * FROM item_purchases
 
+
+
 -- COMMAND ----------
 
 -- MAGIC %python
+-- MAGIC from pyspark.sql.functions import explode, size
+-- MAGIC
 -- MAGIC exploded_salesDF = (spark
 -- MAGIC     .table("sales")
 -- MAGIC     .withColumn("item", explode("items"))

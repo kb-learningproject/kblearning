@@ -102,10 +102,10 @@ OPTIONS (
   delimiter = "|"
 );
 
-CREATE TABLE sales_delta AS
+CREATE OR REPLACE TABLE sales_delta AS
   SELECT * FROM sales_tmp_vw;
   
-SELECT * FROM sales_delta
+SELECT * FROM sales_tmp_vw
 
 -- COMMAND ----------
 
@@ -220,8 +220,8 @@ SELECT * FROM purchase_dates
 
 -- COMMAND ----------
 
--- INSERT INTO purchase_dates VALUES
--- (1, 600000000, 42.0, "2020-06-18")
+INSERT INTO purchase_dates VALUES
+ (1, 1592193956703494, 42.0, "2020-06-15")
 
 -- COMMAND ----------
 
@@ -361,6 +361,14 @@ DEEP CLONE purchases
 
 CREATE OR REPLACE TABLE purchases_shallow_clone
 SHALLOW CLONE purchases
+
+-- COMMAND ----------
+
+SELECT COUNT(*) FROM purchases_clone
+
+-- COMMAND ----------
+
+
 
 -- COMMAND ----------
 

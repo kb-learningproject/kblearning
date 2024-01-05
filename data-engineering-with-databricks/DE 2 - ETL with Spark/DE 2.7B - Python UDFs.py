@@ -81,6 +81,10 @@ first_letter_udf = udf(first_letter_function)
 
 # COMMAND ----------
 
+first_letter_udf = spark.udf.register("sql_email_udf",first_letter_function)
+
+# COMMAND ----------
+
 # DBTITLE 0,--i18n-75abb6ee-291b-412f-919d-be646cf1a580
 # MAGIC %md
 # MAGIC
@@ -91,6 +95,15 @@ first_letter_udf = udf(first_letter_function)
 from pyspark.sql.functions import col
 
 display(sales_df.select(first_letter_udf(col("email"))))
+
+# COMMAND ----------
+
+
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select sql_email_udf(email) from sales
 
 # COMMAND ----------
 

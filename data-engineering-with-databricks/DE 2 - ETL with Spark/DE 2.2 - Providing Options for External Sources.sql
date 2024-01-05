@@ -111,6 +111,10 @@ LOCATION "${DA.paths.sales_csv}"
 
 -- COMMAND ----------
 
+select * from sales_csv
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-4631ecfc-06b5-494a-904f-8577e345c98d
 -- MAGIC %md
 -- MAGIC
@@ -164,7 +168,7 @@ SELECT COUNT(*) FROM sales_csv
 
 -- COMMAND ----------
 
-DESCRIBE EXTENDED sales_csv
+DESCRIBE  EXTENDED sales_csv
 
 -- COMMAND ----------
 
