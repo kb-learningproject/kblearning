@@ -47,7 +47,7 @@
 CREATE OR REFRESH STREAMING LIVE TABLE customers_bronze
 COMMENT "Raw data from customers CDC feed"
 AS SELECT current_timestamp() processing_time, input_file_name() source_file, *
-FROM cloud_files("${source}/customers", "json")
+FROM cloud_files("${source}/customers", "json" ) --map("cloudFiles.inferColumnTypes", "true") for inferring column types, otherwise all string cols
 
 -- COMMAND ----------
 

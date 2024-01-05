@@ -93,6 +93,10 @@ WHEN NOT MATCHED AND u.type = "insert"
 
 -- COMMAND ----------
 
+select * from updates
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-e932d675-aa26-42a7-9b55-654ac9896dab
 -- MAGIC %md
 -- MAGIC
@@ -276,7 +280,7 @@ DESCRIBE HISTORY students
 -- COMMAND ----------
 
 SELECT * 
-FROM students VERSION AS OF 3
+FROM students VERSION AS OF 7
 
 -- COMMAND ----------
 
@@ -336,6 +340,10 @@ RESTORE TABLE students TO VERSION AS OF 8
 
 -- COMMAND ----------
 
+describe history students
+
+-- COMMAND ----------
+
 -- DBTITLE 0,--i18n-847452e6-2668-463b-afdf-52c1f512b8d3
 -- MAGIC %md
 -- MAGIC
@@ -353,7 +361,7 @@ RESTORE TABLE students TO VERSION AS OF 8
 
 -- COMMAND ----------
 
--- VACUUM students RETAIN 0 HOURS
+VACUUM students RETAIN 0 HOURS
 
 -- COMMAND ----------
 

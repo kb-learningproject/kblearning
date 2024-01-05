@@ -87,11 +87,12 @@ CREATE OR REFRESH STREAMING LIVE TABLE status_silver
 AS SELECT * EXCEPT (source_file, _rescued_data)
 FROM STREAM(LIVE.status_bronze);
 
-CREATE OR REFRESH LIVE TABLE email_updates
+/*CREATE OR REFRESH LIVE TABLE email_updates
 AS SELECT a.*, b.email
 FROM LIVE.status_silver a
 INNER JOIN LIVE.subscribed_order_emails_v b
-ON a.order_id = b.order_id;
+ON a.order_id = b.order_id;*/
+
 
 -- COMMAND ----------
 

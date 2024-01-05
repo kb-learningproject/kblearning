@@ -120,8 +120,8 @@ DESCRIBE HISTORY sales
 
 -- COMMAND ----------
 
--- INSERT OVERWRITE sales
--- SELECT *, current_timestamp() FROM parquet.`${da.paths.datasets}/ecommerce/raw/sales-historical`
+INSERT OVERWRITE sales
+SELECT *, current_timestamp() FROM parquet.`${da.paths.datasets}/ecommerce/raw/sales-historical`
 
 -- COMMAND ----------
 
@@ -232,6 +232,7 @@ USING events_update b
 ON a.user_id = b.user_id AND a.event_timestamp = b.event_timestamp
 WHEN NOT MATCHED AND b.traffic_source = 'email' THEN 
   INSERT *
+  
 
 -- COMMAND ----------
 

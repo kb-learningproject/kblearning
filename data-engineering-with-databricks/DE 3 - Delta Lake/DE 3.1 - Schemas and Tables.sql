@@ -53,6 +53,8 @@
 -- COMMAND ----------
 
 CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_default_location;
+CREATE SCHEMA IF NOT EXISTS ${da.schema_name}_custom_location LOCATION '${da.paths.working_dir}/${da.schema_name}_custom_location.db';
+
 
 -- COMMAND ----------
 
@@ -219,7 +221,7 @@ DROP TABLE external_table;
 
 -- COMMAND ----------
 
-DROP SCHEMA ${da.schema_name}_default_location CASCADE;
+DROP SCHEMA ${da.schema_name}_custom_location CASCADE;
 
 -- COMMAND ----------
 

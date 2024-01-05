@@ -110,7 +110,7 @@ RETURN CASE
   ELSE concat("I don't need a ", name)
 END;
 
-SELECT *, item_preference(name, price) FROM item_lookup
+SELECT *, item_preference(name, price) myMessage FROM item_lookup
 
 -- COMMAND ----------
 
